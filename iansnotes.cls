@@ -79,10 +79,6 @@
 % For layering.
 \usetikzlibrary{backgrounds}
   
-% Set minted up.
-\usemintedstyle{manni}
-\setminted{baselinestretch=1.2, bgcolor=gmitgrey!10}
-
 % PGF plots version.
 \pgfplotsset{compat=1.18}
 
@@ -96,6 +92,11 @@
 \definecolor{atulightgreen}{RGB}{172,245,189}
 \definecolor{atuwarmgrey}{RGB}{200,190,191}
 \definecolor{atupurple}{RGB}{77,8,87}
+\definecolor{atuoffwhite}{RGB}{237,237,237}
+
+% Set minted up.
+\usemintedstyle{igor}
+\setminted{frame=single, framesep=2mm, bgcolor=atuoffwhite}
 
 % Prevent minted from showing errors.
 \makeatletter

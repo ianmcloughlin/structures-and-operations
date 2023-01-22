@@ -10,38 +10,41 @@
 
 Are all programming languages equally capable?
 What are the limits of computation?
-How can we discuss computational problems without worrying about the details of a specific machine?
-
+How can we discuss computation without worrying about the details of specific machines?
 To answer these questions, we need a simple way of describing problems.
-In the following article we will define the basic building blocks of computation.
+In the following article we will define the basic building blocks of computing.
 
 
 \section{References}
-First, we will use Norman Biggs' \emph{Discrete Mathematics}~\autocite{biggs}.
-Second, we will use Michael Sipser's \emph{Introduction to the Theory of Computation}~\autocite{sipser}.
+  We will use two reference texts: Norman Biggs' \emph{Discrete Mathematics}~\autocite{biggs} and Michael Sipser's \emph{Introduction to the Theory of Computation}~\autocite{sipser}.
+  We will also use The Python Tutorial~\autocite{pythontutorial}, The Python Software Foundation's official tutorial for Python.
+
 
 \section{Sets} 
   A set is a collection of objects, usually denoted using curly braces\autocite[3]{sipser}.
   For example, the set $A$ below contains the three objects $1$, $2$, and $3$.
-  The objects are usually called elements of the set.
+  We call these objects elements of the set.
 
   $$ A = \{ 1, 2, 3 \} $$
 
   Sets can be infinite, in which case the elements can be identified by an algorithm or property.
-  In this case we usually assume the infinite set of counting numbers\footnote{The numbers are usually called the natural numbers and $\mathbb{N}_0$ is the set of natural numbers including zero.} $\mathbb{N}_0 = \{ 0, 1, 2, 3, \ldots \}$ is a given\footnote{Sometimes it is convenient to not include the element $0$, in which case we denote the set $\mathbb{N}$.}.
+  In this case, we usually assume the infinite set of counting numbers\footnote{We call these the natural numbers and $\mathbb{N}_0$ is the set of natural numbers including zero.} $\mathbb{N}_0 = \{ 0, 1, 2, 3, \ldots \}$ is a given\footnote{Sometimes it is convenient to not include the element $0$, in which case we denote the set $\mathbb{N}$.}.
 
-  In the below, the set $T$ of even positive natural numbers is given by an algorithm.
-  The algorithm says start with a natural number and multiply it by two.
-  The set $P$ is given by the property that each element is prime.
+  In the below, we generate the set $T$ of even positive natural numbers with an algorithm.
+  The algorithm says start with the natural numbers and multiply each of them by two.
 
   $$ T = \{ 2n \, | \, n \in \mathbb{N} \} $$
+  
+  Similarly, the set $P$ is given by the property that each element is prime.
+  Of course, we could define them by an algorithm such as the brute force algorithms for primes.
+  
   $$ P = \{ p \in \mathbb{N} \, | \, p \textrm{ is prime} \} $$
 
-  Two important properties of sets are that sets are unordered and that each element is distinct.
-  Note there is no mention of order in the definition \emph{collection of objects}\footnote{We can create an order or ordering of a set if we wish but that is something we must treat alongside the set.}.
+  \newthought{Two important properties} of sets are that they are unordered and that each element is distinct.
+  Note there is no mention of order in the definition \emph{collection of objects}\footnote{We can create an order or ordering of a set if we wish, but that is something we must treat alongside the set.}.
   Likewise, the idea of an \emph{object} is that it is unique --- we did not say an instance of an object or anything like that.
 
-  We say $B$ is a subset of $A$ if all of the elements on $B$ are also in $A$.
+  We say $B$ is a subset of $A$ if all the elements in $B$ are also in $A$.
   When $B$ has $k$ elements, we sometimes say $B$ is a $k$-subset of $A$.
   Under this definition, the empty set and $A$ itself are always subsets of a set $A$.
 
@@ -49,18 +52,135 @@ Second, we will use Michael Sipser's \emph{Introduction to the Theory of Computa
   In this case, we are not saying that the elements of $B$ are individually in $A$, although that could also be the case.
   The distinction is important\footnote{Bertrand Russel is known for Russell's paradox about a set $R$ which is the set of all sets that do not contain themselves. A set seemingly may contain itself --- consider the set of all sets. Does $R$ contain itself?}.
 
+  \newthought{In Python,} \mintinline{python}{set} is a built-in type.
+  We can create a new set \mintinline{python}{S} with three elements as follows.
+  \begin{minted}{python}
+S = {1, 2, 3}
+  \end{minted}
+  Be careful with the empty set in Python.
+  The statement \mintinline{python}{{}} creates an empty dictionary not an empty set.
+  You have to use \mintinline{python}{set()} instead.
+  You can test membership using the \mintinline{python}{in} operator.
 
-\section{Tuple Notation}
+  We define the union of sets $S$ and $T$, denoted $S \cup T$, as the set of all the elements in $S$ or $T$.
+  Likewise, the intersection $S \cap T$ means the set of all the elements in both $S$ and $T$.
+  Finally, the difference $S \setminus T$ means the set of all the elements in $S$ but not in $T$.
+
+  \newthought{In Python,} we use different symbols for these operators.
+  \begin{minted}{python}
+S = {1, 2, 3}
+T = {3, 4, 5}
+
+S | T # Union: {1, 2, 3, 4, 5}
+S & T # Intersection: {3}
+S - T # Difference: {1, 2}
+T - S # Different difference: {4, 5}
+  \end{minted}
+
+
+\section{Tuples}
   When order matters, we use tuples.
-  Tuples are basically the same as lists of arrays in programming languages.
-
   A tuple is a finite sequence\autocite[6]{sipser}.
   A sequence is a list of objects, usually stipulated to come from a set or sets.
   A tuple of length $k$ is sometimes called a $k$-tuple, although a $2$-tuple is usually just called a pair.
+  In the following, $t$ is a tuple of length $4$, a $4$-tuple.
+  The first element is $1$ and the last, the fourth element, is $16$.
 
+  \[ t = (1, 4, 9, 16) \]
+
+  Tuples are basically the same as lists of arrays in programming languages.
   The word \emph{list} implies an order --- we can talk about the first thing on a list, if it exists.
+  Because they are ordered, it also makes sense to have more than one copy of an element in a tuple so long as they are in different positions.
+
+  \newthought{In Python,} \mintinline{python}{list} and \mintinline{python}{tuple} are in fact different types.
+  They are very similar, with the main difference being that tuples are immutable and lists are mutable.
+  Each has its advantages in different contexts.
+  Lists are very flexible.
+  Tuples are hashable.
+  In the following example, $t$ is a tuple and $l$ is a list.
+  Note that lists use brackets \mintinline{python}{[]} and tuples use parentheses \mintinline{python}{()}.
+
+\begin{minted}{python}
+l = [1, 4, 9, 16] # list
+l[0] # 1
+l[-1] # 16
+l[2] = 8 # Okay: l is now [1, 4, 8, 16].
+
+t = (1, 4, 9, 16) # tuple
+t[0] # 1
+t[-1] # 16
+t[2] = 8 # Not okay: does not support assignment.
+\end{minted}
 
 
+\section{Strings}
+  We will use the terms \emph{string} and \emph{tuple} interchangeably.
+  Generally, we will use the word string when we mean that all the elements in the tuple come from a single set that we will call an \emph{alphabet}.
+  We also generally write strings without parentheses and commas.
+  
+  In the following, $t$ is a tuple.
+  \[ t = (0, 1, 1, 0, 1) \]
+  Whereas in the following, $s$ is a string.
+  \[ s = 01101 \]
+  Clearly, with strings, it is important that each individual symbol represents an individual element.
+  For example, the tuple $(1, 4, 9 ,15)$ should not be written in string form as $15$ is a single element represented by two symbols.
+  Someone could reasonably assume $14915$ contains five elements: $1$, $4$, $9$, $1$, and $5$.
 
+  \newthought{In Python,} \mintinline{python}{str} is a built-in type.
+  You delimit strings with either single or double quotes, the same on either side.
+  They act more like tuples than lists, in the sense that they are immutable.
+  
+  Strings are more complex than tuples, however.
+  They have several methods associated with them, such as \mintinline{python}{lower()} and \mintinline{python}{upper()}.
+  They also have to contend with Unicode, symbols which can take up a variable number of bytes.
+  The alphabet for Python strings is the set of all Unicode code points.
+
+\begin{minted}{python}
+s = 'Hello'
+s[0] # 'H'
+s[-1] # 'o'
+s[2] = 'n' # Not okay: does not support assignment.
+\end{minted}
+
+\section{Languages}
+  A language is a set of strings over an alphabet.
+  You start with any set, which you call the alphabet $A$.
+  You can then form the set of all possible strings of $A$ which is sometimes written as $A^*$.
+  We call the $*$ the Kleene star after Stephen Cole Kleene.
+
+  A language is then any subset of $A^*$.
+  Note that $A^*$ is a subset of itself, so it is a language, as is the empty set $\{\}$.
+  
+  Sometimes it is useful to discuss all strings of some fixed length $k$ over an alphabet $A$.
+  That is usually denoted $A^k$.
+  For example, when $A$ is the set $\{0, 1\}$ then:
+  \[A^2 = \{ 00, 01, 10, 11 \} \]
+  \[A^3 = \{ 000, 001, 010, 011, 100, 101, 110, 111 \} \]
+  Then we can define $A^*$ as follows.
+  \[A^* = \bigcup_{i=0}^\infty A^i\]
+  Note that $A^*$ is infinite, but every element contained in it is of finite length.
+
+  We often call a set of languages a class.
+  So a class is a set of languages, a language is a set of strings, and a string is a tuple over an alphabet, which itself is a set.
+
+  \newthought{Languages are purely syntactical.}
+  Consider the set of prime numbers $P = \{2, 3, 5, 7, 11, 13, \ldots\}$.
+  Here we have written the numbers using decimal notation.
+  We can consider each number as a string written over the alphabet $A = \{0,1,2,3,4,5,6,7,9\}$.
+  In that sense, the number thirteen is represented by the $2$-tuple $(1, 3)$.
+
+  Of course, we could write the prime numbers in binary.
+  In that case $P_B = \{ 10, 11, 101, 111, 1011, 1101, \ldots \}$.
+  Then the number thirteen is the tuple $(1,1,0,1)$.
+  Sometimes it is handier to write binary numbers with the least significant bit at the start.
+  Then thirteen is the string $1011$.
+
+  Which of these is the correct way to write the number thirteen?
+  There is no right way --- which might seem frustrating.
+  But we brought out an important distinction between syntax\footnote{\textbf{syntax} \emph{noun}: the arrangement of words and phrases to create well-formed sentences in a language; the structure of statements in a computer language.} and semantics\footnote{\textbf{semantics} \emph{noun}: the meaning of a word, phrase, or text.}.
+  We can now consider purely syntactical problems.
+  
+  Is syntax by itself of any use or do we need semantics to say anything useful about the world?
+  Turns out the former is true.
 
 \end{document} 
