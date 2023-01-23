@@ -16,8 +16,9 @@ In the following article we will define the basic building blocks of computing.
 
 
 \section{References}
-  We will use two reference texts: Norman Biggs' \emph{Discrete Mathematics}~\autocite{biggs} and Michael Sipser's \emph{Introduction to the Theory of Computation}~\autocite{sipser}.
-  We will also use The Python Tutorial~\autocite{pythontutorial}, The Python Software Foundation's official tutorial for Python.
+  We will use two reference texts: Norman Biggs' \emph{Discrete Mathematics}\autocite{biggs} and Michael Sipser's \emph{Introduction to the Theory of Computation}\autocite{sipser}.
+  Another good resource is the Open Logic Text~\autocite{openlogictext}.
+  On the practical side, I recommend also use The Python Tutorial\autocite{pythontutorial}, The Python Software Foundation's official tutorial for Python.
 
 
 \section{Sets} 
@@ -114,7 +115,7 @@ t[2] = 8 # Not okay: does not support assignment.
 
 
 \section{Strings}
-  We will use the terms \emph{string} and \emph{tuple} interchangeably.
+  We will use the terms \emph{string} and \emph{tuple} interchangeably\autocite[14]{sipser}.
   Generally, we will use the word string when we mean that all the elements in the tuple come from a single set that we will call an \emph{alphabet}.
   We also generally write strings without parentheses and commas.
   
@@ -143,7 +144,7 @@ s[2] = 'n' # Not okay: does not support assignment.
 \end{minted}
 
 \section{Languages}
-  A language is a set of strings over an alphabet.
+  A language is a set of strings over an alphabet\autocite[14]{sipser}.
   You start with any set, which you call the alphabet $A$.
   You can then form the set of all possible strings of $A$ which is sometimes written as $A^*$.
   We call the $*$ the Kleene star after Stephen Cole Kleene.
@@ -189,7 +190,7 @@ s[2] = 'n' # Not okay: does not support assignment.
   However, we want to capture the idea of linking inputs to outputs with worrying about how to get there.
   In this case we will use the term \emph{map}.
 
-  Informally, a map from a set $X$ to a set $Y$ is an assignment of the elements of $X$ to elements in $Y$.
+  Informally, a map from a set $X$ to a set $Y$ is an assignment of the elements of $X$ to elements in $Y$\autocite[7]{sipser}.
   We need a better definition than that, so we will first define the Cartesian product\footnote{Named after the famous philosopher Rene Descartes.}.
   
   The Cartesian product, $X \times Y$, of two sets $X$ and $Y$ is the set of all possible $2$-tuples (or pairs) where the first element comes from $X$ and the second from $Y$.
@@ -225,6 +226,23 @@ s[2] = 'n' # Not okay: does not support assignment.
 
   \[ f = \{(1,1), (2,4), (3,9) \} \]
   
+  \newthought{In Python,} functions are defined using the \mintinline{python}{def} keyword.
+  Note that in most programming languages you must give an algorithm to compute the function.
+  \begin{minted}{python}
+def f(x):
+  ans = 1
+  for i in range(x):
+    ans = ans * i
+  return ans
+  \end{minted}
+  In the earlier definition of a function we made no reference to algorithms.
+  To mimic those kinds of functions we can just use a dictionary.
+  \begin{minted}{python}
+def f(x):
+  pairs = {1: 1, 2: 4, 3: 9}
+  return pairs[x]
+  \end{minted}
 
-
+\section{Further Topics}
+  Now that we have defined our basic building blocks, we can discuss topics in computation and computability.
 \end{document} 
