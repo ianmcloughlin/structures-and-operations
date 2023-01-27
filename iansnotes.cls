@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{iansnotes}[2023/01/18 v1.0.1 Ian's notes.]
+\ProvidesClass{iansnotes}[2023/01/27 v1.0.2 Ian's notes.]
 
 % Based on Tufte handout class.
 \LoadClass[a4paper, nobib]{tufte-handout}
@@ -50,6 +50,8 @@
 \usepackage{gensymb}
 % Calculates the number of pages.
 \usepackage{lastpage}
+% Better table columns.
+\usepackage{array}
 % Bibliography.
 \usepackage[style=verbose, autocite=footnote, backend=biber]{biblatex}
 
@@ -81,6 +83,9 @@
   
 % PGF plots version.
 \pgfplotsset{compat=1.18}
+
+% Fixed column width, centered.
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}p{#1}}
 
 % ATU colours.
 \definecolor{atunavy}{RGB}{0,26,121}
