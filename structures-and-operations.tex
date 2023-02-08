@@ -191,10 +191,10 @@ s[2] = 'n' # Not okay: does not support assignment.
   In this case we will use the term \emph{map}.
 
   Informally, a map from a set $X$ to a set $Y$ is an assignment of the elements of $X$ to elements in $Y$\autocite[7]{sipser}.
-  We need a better definition than that, so we will first define the Cartesian product\footnote{Named after the famous philosopher Rene Descartes.}.
+  We need a better definition than that, so we will first define the Cartesian product.
   
   The Cartesian product, $X \times Y$, of two sets $X$ and $Y$ is the set of all possible $2$-tuples (or pairs) where the first element comes from $X$ and the second from $Y$.
-  Where $X$ and $Y$ are both the set of real numbers $\mathbb{R}$ we get the Cartesian plane.
+  For example, where $X$ and $Y$ are both the set of real numbers $\mathbb{R}$ we get the Cartesian plane\footnote{The Cartesian product and the Cartesian plane are both named after the famous French philosopher Ren\'e Descartes (1596--1650).}.
 
   A simpler example is as follows.
   Let $S$ be the set $\{1, 2, 3\}$ and $T$ the set $\{a, b\}$.
@@ -202,31 +202,31 @@ s[2] = 'n' # Not okay: does not support assignment.
 
   \[S \times T = \{ (1,a), (1,b), (2,a), (2,b), (3,a), (3,b)\}\]
 
-  Now, a function $f$ from $X$ to $Y$ is a subset of $S \times T$ such that every element of $X$ is the first element of exactly one element in $f$.
-  For example, in the following $f_1$ and $f_2$ are functions from $S$ to $T$ where $S$ and $T$ are as above.
+  Now, a map $f$ from $X$ to $Y$ is a subset of $S \times T$ such that every element of $X$ is the first element of exactly one element in $f$.
+  For example, in the following $f_1$ and $f_2$ are maps from $S$ to $T$ where $S$ and $T$ are as above.
 
   \[ f_1 = \{ (1, a), (2, a), (3, b) \} \]
   \[ f_2 = \{ (1, a), (2, a), (3, a) \} \]
 
-  However, the following are not functions from $S$ to $T$.
-  In the first one, the element $2$ is not mapped to anything\footnote{Sometimes we call this a partial function.}.
+  However, the following are not maps from $S$ to $T$.
+  In the first one, the element $2$ is not mapped to anything\footnote{Sometimes we call this a partial function or partial map.}.
   In the second, $1$ is mapped to two things in $T$.
 
   \[ \{ (1, a), (3, a) \} \]
   \[ \{ (1, a), (1, b), (2, a), (3, a) \} \]
 
   Note that all of $X$ must be used, but not all of $Y$.
-  In cases where all of $Y$ is used, we say the function is \emph{onto} $Y$ or \emph{surjective}, and call it a \emph{surjection}.
-  In cases where each element of $X$ is mapped to a different element of $Y$ we say the function is \emph{one-to-one} or \emph{injective}.
+  Where all of $Y$ is used, we say the map is \emph{onto} $Y$ or \emph{surjective}, and call it a \emph{surjection}.
+  Where each element of $X$ is mapped to a different element of $Y$ we say the map is \emph{one-to-one} or \emph{injective}.
   In the examples above, $f_1$ is surjective and $f_2$ is not.
   Neither is injective.
 
-  The following function from $X = \{1, 2, 3\}$ to $Y = \{1, 4, 9\}$ is both injective and surjective.
-  We say such functions are \emph{bijective} and call them \emph{bijections}.
+  The following map from $X = \{1, 2, 3\}$ to $Y = \{1, 4, 9\}$ is both injective and surjective.
+  We say such map are \emph{bijective} and call them \emph{bijections}.
 
   \[ f = \{(1,1), (2,4), (3,9) \} \]
   
-  \newthought{In Python,} we define using the \mintinline{python}{def} keyword.
+  \newthought{In Python,} we define functions using the \mintinline{python}{def} keyword.
   Note that in most programming languages you must give an algorithm to compute the function.
   \begin{minted}{python}
 def f(x):
@@ -235,8 +235,8 @@ def f(x):
     ans = ans * i
   return ans
   \end{minted}
-  In the earlier definition of a function we made no reference to algorithms.
-  To mimic those kinds of functions we can just use a dictionary.
+  In our definition of a map we made no reference to algorithms.
+  To mimic those kinds of functions or maps, we can just use a dictionary.
   \begin{minted}{python}
 def f(x):
   pairs = {1: 1, 2: 4, 3: 9}
