@@ -245,11 +245,18 @@ def f(x):
 
 \section{Decision Problems}
   Decision problems play an important role in computation.
-  Suppose we have an alphabet $A$ and a language $L$ over $A$.
-  As we have seen, that means $L$ is a subset of $A^*$.
-
+  Suppose we have an alphabet $A$.
   We define a decision problem as a map $d:A^* \rightarrow \{0, 1\}$.
 
+  For example, we can define the decision problem $f$ over the alphabet $A = \{0,1\}$ based on the idea that only strings beginning with a $1$ are mapped to $1$ and all others are mapped to $0$.
+  So, $f(\epsilon) = 0$, $f(0) = 0$, $f(1) = 1$, $f(00) = 0$, $f(01) = 0$, $f(10) = 1$, and so on.
+  
+  We can associate with any decision $m$ the set $\{ x | m(x) = 1 \}$.
+  In this sense, decision problems are about separating $A^*$ into two subsets in such a way that the intersection of the subsets is the empty set and their union is $A^*$.
+  This is called a partition of $A^*$ --- a set of non-overlapping subsets whose union is the parent set.
+
+  The set of elements that $m$ maps to $1$ is a subset of $A^*$ and thus is a language over $A$.
+  In this sense, decision problems define or identify languages.
 
 
 \section{Further Topics}
