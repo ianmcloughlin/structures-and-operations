@@ -202,7 +202,7 @@ s[2] = 'n' # Not okay: does not support assignment.
 
   \[S \times T = \{ (1,a), (1,b), (2,a), (2,b), (3,a), (3,b)\}\]
 
-  Now, a map $f$ from $X$ to $Y$ is a subset of $S \times T$ such that every element of $X$ is the first element of exactly one element in $f$.
+  Now, a map $f$ from $X$ to $Y$\footnote{We often write this as $f:X \rightarrow Y$.} is a subset of $S \times T$ such that every element of $X$ is the first element of exactly one element in $f$.
   For example, in the following $f_1$ and $f_2$ are maps from $S$ to $T$ where $S$ and $T$ are as above.
 
   \[ f_1 = \{ (1, a), (2, a), (3, b) \} \]
@@ -242,6 +242,15 @@ def f(x):
   pairs = {1: 1, 2: 4, 3: 9}
   return pairs[x]
   \end{minted}
+
+\section{Decision Problems}
+  Decision problems play an important role in computation.
+  Suppose we have an alphabet $A$ and a language $L$ over $A$.
+  As we have seen, that means $L$ is a subset of $A^*$.
+
+  We define a decision problem as a map $d:A^* \rightarrow \{0, 1\}$.
+
+
 
 \section{Further Topics}
   Now that we have defined our basic building blocks, we can discuss topics in computation and computability.
